@@ -12,14 +12,14 @@ require "action_mailbox/engine"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module PbjTime
+module App
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
@@ -32,7 +32,23 @@ module PbjTime
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.active_job.queue_adapter = :sidekiq
+
+    config.i18n.load_path += Dir[
+      Rails.root.join('config', 'locales', '**', '*.{rb,yml}')
+    ]
+
+    config.generators do |g|
+      g.system_tests = nil
+      g.test_framework :rspec
+      g.helper_specs false
+      g.controller_specs false
+      g.view_specs false
+      g.routing_specs false
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+
+      g.stylesheets false
+      g.helper false
+    end
   end
 end

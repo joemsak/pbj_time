@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Upcoming Announcements</h1>
+
+<%= render 'table', announcements: @upcoming_announcements %>
+
+<h1>Published Announcements</h1>
+
+<%= render 'table', announcements: @published_announcements %>
+
+<p>
+  <%= link_to 'New Announcement', new_announcement_path %>
+</p>

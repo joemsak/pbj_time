@@ -1,0 +1,46 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  body {
+    @apply p-4;
+  }
+
+  input[type=text],
+  textarea,
+  select {
+    @apply border-2;
+    @apply border-blue-400;
+  }
+
+  label {
+    @apply block;
+  }
+
+  input[type=submit],
+  button {
+    @apply py-2;
+    @apply px-4;
+    @apply bg-blue-400;
+    @apply hover:bg-blue-900;
+    @apply text-white;
+    @apply cursor-pointer;
+  }
+
+  a {
+    @apply text-blue-400;
+    @apply hover:text-blue-900;
+  }
+}
+
+.field {
+  @apply mb-4;
+}
+
+#notice {
+  @apply py-2;
+  @apply px-4;
+  @apply bg-green-400;
+  @apply text-white;
+}
